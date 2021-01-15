@@ -6,6 +6,8 @@ https://guillaumegenthial.github.io/
 ## Math 
 https://en.wikipedia.org/wiki/Matrix_calculus
 ## Attention 
-https://zhuanlan.zhihu.com/p/47063917
+https://zhuanlan.zhihu.com/p/47063917 
+
 https://zhuanlan.zhihu.com/p/47282410
+
 https://zhuanlan.zhihu.com/p/47613793
