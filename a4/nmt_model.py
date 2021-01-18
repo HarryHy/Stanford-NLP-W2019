@@ -249,7 +249,15 @@ class NMT(nn.Module):
         ###         https://pytorch.org/docs/stable/torch.html#torch.cat
         ###     Tensor Stacking:
         ###         https://pytorch.org/docs/stable/torch.html#torch.stack
-
+        enc_hiddens_proj = self.att_projection(enc_hiddens) # (b, src_len, h)
+        Y = self.model_embeddings.target(target_padded) # (tgt_len, b, e)
+        for Y_t in torch.split(Y, 1):
+            Y_t = torch.squeeze(Y_t, dim=0) # (b, e)
+            Ybar_t = torch.cat((Y_t, o_prev), dim=1) # (b, e + h)
+            dec_state, o_t, e_t = self.step(Ybar_t, dec_state, enc_hiddens, enc_hiddens_proj, enc_masks)
+            o_prev = o_t
+            combined_outputs.append(o_t)
+        combined_outputs = torch.stack(combined_outputs, dim=0)
 
         ### END YOUR CODE
 
@@ -307,7 +315,10 @@ class NMT(nn.Module):
         ###         https://pytorch.org/docs/stable/torch.html#torch.unsqueeze
         ###     Tensor Squeeze:
         ###         https://pytorch.org/docs/stable/torch.html#torch.squeeze
-
+        dec_state = self.decoder(Ybar_t, dec_state)
+        dec_hidden, dec_cell = dec_state # (b, h)
+        e_t = torch.bmm(enc_hiddens_proj, torch.unsqueeze(dec_hidden, dim=2)) # (b, src_len, 1)
+        e_t = torch.squeeze(e_t, dim=2) # (b, src_len)
 
         ### END YOUR CODE
 
@@ -342,7 +353,11 @@ class NMT(nn.Module):
         ###         https://pytorch.org/docs/stable/torch.html#torch.cat
         ###     Tanh:
         ###         https://pytorch.org/docs/stable/torch.html#torch.tanh
-
+        alpha_t = torch.unsqueeze(F.softmax(e_t, dim=1), dim=1)
+        a_t = torch.squeeze(torch.bmm(alpha_t, enc_hiddens), dim=1) # (b, 2*h)
+        u_t = torch.cat((a_t, dec_hidden), dim=1) # (b, 3*h)
+        v_t = self.combined_output_projection(u_t) # (b, h)
+        O_t = self.dropout(torch.tanh(v_t))
 
         ### END YOUR CODE
 
@@ -416,7 +431,7 @@ class NMT(nn.Module):
             contiuating_hyp_scores = (hyp_scores.unsqueeze(1).expand_as(log_p_t) + log_p_t).view(-1)
             top_cand_hyp_scores, top_cand_hyp_pos = torch.topk(contiuating_hyp_scores, k=live_hyp_num)
 
-            prev_hyp_ids = top_cand_hyp_pos / len(self.vocab.tgt)
+            prev_hyp_ids = top_cand_hyp_pos // len(self.vocab.tgt)
             hyp_word_ids = top_cand_hyp_pos % len(self.vocab.tgt)
 
             new_hypotheses = []
