@@ -11,3 +11,6 @@ https://zhuanlan.zhihu.com/p/47063917
 https://zhuanlan.zhihu.com/p/47282410
 
 https://zhuanlan.zhihu.com/p/47613793
+
+## Reference
+https://github.com/bentrevett/pytorch-seq2seq
