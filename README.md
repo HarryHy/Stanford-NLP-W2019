@@ -23,5 +23,5 @@ https://github.com/dlsucomet/MLResources/blob/master/books/%5BNLP%5D%20Natural%2
 Notes and explanation 
 https://zhuanlan.zhihu.com/p/59011576
 
-##Update
+## Update
 Finished Lecture 14 and working on A5 
