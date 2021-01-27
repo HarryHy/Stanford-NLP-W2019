@@ -19,3 +19,6 @@ https://github.com/bentrevett/pytorch-seq2seq
 
 Book recommended in the video
 https://github.com/dlsucomet/MLResources/blob/master/books/%5BNLP%5D%20Natural%20Language%20Processing%20with%20PyTorch%20(2019).pdf
+
+Notes and explanation 
+https://zhuanlan.zhihu.com/p/59011576
