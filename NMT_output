@@ -1,0 +1,51 @@
+Seq2Seq(
+  (encoder): Encoder(
+    (embedding): Embedding(7854, 256)
+    (rnn): GRU(256, 512, bidirectional=True)
+    (fc): Linear(in_features=1024, out_features=512, bias=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+  )
+  (decoder): Decoder(
+    (attention): Attention(
+      (attn): Linear(in_features=1536, out_features=512, bias=True)
+      (v): Linear(in_features=512, out_features=1, bias=False)
+    )
+    (embedding): Embedding(5893, 256)
+    (rnn): GRU(1280, 512)
+    (fc_out): Linear(in_features=1792, out_features=5893, bias=True)
+    (dropout): Dropout(p=0.5, inplace=False)
+  )
+)
+
+The model has 20,518,917 trainable parameters
+Epoch: 01 | Time: 1m 19s
+	Train Loss: 5.019 | Train PPL: 151.228
+	 Val. Loss: 4.851 |  Val. PPL: 127.808
+Epoch: 02 | Time: 1m 25s
+	Train Loss: 4.116 | Train PPL:  61.331
+	 Val. Loss: 4.424 |  Val. PPL:  83.401
+Epoch: 03 | Time: 1m 26s
+	Train Loss: 3.495 | Train PPL:  32.955
+	 Val. Loss: 3.782 |  Val. PPL:  43.904
+Epoch: 04 | Time: 1m 27s
+	Train Loss: 2.966 | Train PPL:  19.416
+	 Val. Loss: 3.449 |  Val. PPL:  31.467
+Epoch: 05 | Time: 1m 26s
+	Train Loss: 2.574 | Train PPL:  13.124
+	 Val. Loss: 3.280 |  Val. PPL:  26.587
+Epoch: 06 | Time: 1m 27s
+	Train Loss: 2.280 | Train PPL:   9.778
+	 Val. Loss: 3.241 |  Val. PPL:  25.551
+Epoch: 07 | Time: 1m 26s
+	Train Loss: 2.017 | Train PPL:   7.519
+	 Val. Loss: 3.179 |  Val. PPL:  24.026
+Epoch: 08 | Time: 1m 26s
+	Train Loss: 1.816 | Train PPL:   6.147
+	 Val. Loss: 3.270 |  Val. PPL:  26.301
+Epoch: 09 | Time: 1m 27s
+	Train Loss: 1.635 | Train PPL:   5.129
+	 Val. Loss: 3.308 |  Val. PPL:  27.333
+Epoch: 10 | Time: 1m 26s
+	Train Loss: 1.501 | Train PPL:   4.487
+	 Val. Loss: 3.297 |  Val. PPL:  27.029
+   
