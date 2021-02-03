@@ -24,4 +24,4 @@ Notes and explanation
 https://zhuanlan.zhihu.com/p/59011576
 
 ## Update
-Finished Lecture 14 and working on A5 
+A5 Done 
