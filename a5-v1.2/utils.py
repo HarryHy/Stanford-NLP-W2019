@@ -43,6 +43,21 @@ def pad_sents_char(sents, char_pad_token):
 
 
     ### END YOUR CODE
+    
+    max_sentence_length = max(len(sent) for sent in sents)
+    word_padded = [char_pad_token] * max_word_length
+    sents_padded = []
+
+    for sent in sents:
+        words_padded = []
+        for word in sent:
+            if len(word) > max_word_length:
+                words_padded.append(word[:max_word_length])
+            else:
+                words_padded.append(word + [char_pad_token] * 
+                                    (max_word_length - len(word)))
+        sents_padded.append(words_padded + [word_padded] * 
+                            (max_sentence_length - len(words_padded)))
 
     return sents_padded
 
