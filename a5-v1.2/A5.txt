@@ -1,0 +1,5 @@
+load test source sentences from [./en_es_data/test_tiny.es]
+load test target sentences from [./en_es_data/test_tiny.en]
+load model from model.bin
+Decoding: 100%|█████████████████████████████████████████████████████████████████████████████████████████████████████████████████| 4/4 [00:00<00:00,  8.46it/s]
+Corpus BLEU: 99.29792465574434
